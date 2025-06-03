@@ -1,21 +1,16 @@
-# Node.js
-# Build a general Node.js project with npm.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-
 trigger:
-- main
+- main  # Triggers the pipeline on commits to the main branch
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: ubuntu-latest  # Runs the pipeline on the latest Ubuntu VM
 
 steps:
-- task: NodeTool@0
+- task: NodeTool@0          # Use the NodeTool task to install Node.js
   inputs:
-    versionSpec: '20.x'
+    versionSpec: '20.x'     # Install Node.js version 20.x
   displayName: 'Install Node.js'
 
-- script: |
+- script: |                 # Run npm commands in a script step
     npm install
     npm run build
   displayName: 'npm install and build'
